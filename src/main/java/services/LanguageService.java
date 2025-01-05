@@ -6,8 +6,8 @@ import enums.HeadersEnum;
 import model.response.LanguageResponse;
 import java.util.Map;
 import static helpers.LanguageRequestHelper.createLanguageRequest;
+import static utils.DataStoreMap.*;
 import static utils.Helpers.*;
-import static utils.Helpers.assertNotNull;
 
 public class LanguageService extends RestAssuredClient {
 
@@ -28,14 +28,13 @@ public class LanguageService extends RestAssuredClient {
 
     public void convertToFile(String getResponse,String setResponse) {
         convertToUTF8(getResponse,setResponse);
-        assertNotNull(dataStoreMap.getContext(setResponse), "UTF-8 conversion failed");
+        assertNotNull(getContext(setResponse), "UTF-8 conversion failed");
     }
 
     public void getLanguageFileDownload(String usingSetResponse) {
-        Object fileValue=  dataStoreMap.getContext(""+usingSetResponse+"");
+        Object fileValue=  getContext(""+usingSetResponse+"");
         Map<String, Object> header = setHeaders(HeadersEnum.ACCEPT);
         response = getRequest(APIConstants.Endpoint.GET_LANGUAGE_DOWNLOAD_ENDPOINT + fileValue,header);
         assertStatusCode(response.getStatusCode(), 200);
     }
 }
-
