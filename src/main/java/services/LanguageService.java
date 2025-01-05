@@ -12,8 +12,9 @@ import static utils.Helpers.*;
 
 public class LanguageService extends RestAssuredClient {
 
-    LanguageResponse languageResponse;
+    @Getter
     private Response response;
+    LanguageResponse languageResponse;
 
     public LanguageService(String baseUrl) {
         super(baseUrl);
