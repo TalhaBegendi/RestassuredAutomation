@@ -3,8 +3,8 @@ package enums;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Getter
+@RequiredArgsConstructor
 public enum AuthorizationEnum {
     VALUE("yourAuthTokens"),
     KEY_NAME("Authorization"),
