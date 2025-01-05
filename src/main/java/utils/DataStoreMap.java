@@ -1,21 +1,18 @@
 package utils;
 
-import lombok.Getter;
+import lombok.experimental.UtilityClass;
 import java.util.HashMap;
 import java.util.Map;
 
-@Getter
+@UtilityClass
 public class DataStoreMap {
+    private final Map<String, String> contextMap = new HashMap<>();
 
-    private static Map<String, Object> dataStoreMap;
-    public DataStoreMap() {dataStoreMap = new HashMap<>();}
-
-    public void setContext(String key, Object value) {
-        dataStoreMap.put(key, value);
+    public void setContext(String key, String value) {
+        contextMap.put(key, value);
     }
 
-    public Object getContext(String key) {
-        return dataStoreMap.get(key);
+    public String getContext(String key) {
+        return contextMap.get(key);
     }
-
 }
