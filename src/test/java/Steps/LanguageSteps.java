@@ -1,26 +1,32 @@
 package Steps;
 
+import client.HttpClientImp;
 import config.APIConstants;
-import services.LanguageService;
+import helper.LanguageHelper;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
+import model.response.LanguageResponse;
+import static utils.Helpers.assertNotNull;
+
 
 public class LanguageSteps {
 
-    LanguageService languageService = new LanguageService(APIConstants.BASE_URL);
+    LanguageHelper languageHelper = new LanguageHelper(new HttpClientImp(APIConstants.BASE_URL));
 
     @When("Post language after get field from response")
     public void postLanguage() {
-        languageService.postLanguage();
+        LanguageResponse languageResponse = languageHelper.postLanguage();
+        assertNotNull(languageResponse.getLink(), "Link is null");
+        assertNotNull(languageResponse.getCode(), "Code is null");
     }
 
     @And("Convert language file to UTF-8 using get response {string} and set response {string}")
     public void convertToFile(String getResponse, String setResponse) {
-        languageService.convertToFile(getResponse, setResponse);
+        languageHelper.convertToFile(getResponse, setResponse);
     }
 
     @And("Get language file download before variable set response {string}")
     public void getLanguageFileDownload(String usingSetResponse) {
-        languageService.getLanguageFileDownload(usingSetResponse);
+        languageHelper.getLanguageFileDownload(usingSetResponse);
     }
 }

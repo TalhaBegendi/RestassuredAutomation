@@ -31,12 +31,4 @@ public class Helpers {
     public void assertNotNull(Object object, String message) {
         assertThat(object).as(message).isNotNull();
     }
-
-    public Map<String, Object> setHeaders(HeadersEnum... headerTypes) {
-        Map<String, Object> headers = new HashMap<>();
-        for (HeadersEnum headerType : headerTypes) {
-            headers.put(headerType.getKey(), headerType.getValue());
-        }
-        return headers;
-    }
 }
